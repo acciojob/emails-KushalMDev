@@ -1,5 +1,7 @@
 package com.driver;
 
+import static java.lang.Character.isUpperCase;
+
 public class Email {
 
     private String emailId;
@@ -25,33 +27,31 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-        if(password.equals(oldPassword)){
-            if(newPassword.length()==8 &&  helper(newPassword)){
-                password=newPassword;
+        if(this.password==oldPassword){
+            if(newPassword.length()>=8){
+                boolean isUpperCase = false;
+                boolean isLowerCase = false;
+                boolean isDigit = false;
+                boolean isSpecial = false;
+                for(int i=0; i<newPassword.length(); i++){
+                    char ch = newPassword.charAt(i);
+                    if(Character.isUpperCase(ch)){
+                        isUpperCase = true;
+                    }
+                    if(Character.isLowerCase(ch)){
+                        isLowerCase = true;
+                    }
+                    if(Character.isDigit(ch)){
+                        isDigit = true;
+                    }
+                    if(ch=='!' || ch=='@' || ch=='#' || ch=='$' || ch=='%' || ch=='^' || ch=='&' || ch=='*'){
+                        isSpecial = true;
+                    }
+                }
+                if(isUpperCase && isLowerCase && isDigit && isSpecial){
+                    this.password = newPassword;
+                }
             }
         }
     }
-
-    private boolean helper(String newPassword) {
-        int cnt=0;
-        for(char c:newPassword.toCharArray()){
-            if(c>=65 && c<=90){
-                cnt++;
-            }
-            else if(c>=97 && c<=122){
-                cnt++;
-            }
-            else if(Character.isDigit(c)){
-                cnt++;
-            }
-            else if(c=='!' || c=='@' || c=='#' || c=='$' || c=='%' || c=='^' || c=='&' || c=='*')
-            {
-                cnt++;
-            }
-           
-        }
-        if(cnt>=4)return true;
-        return false;
-    }
-    
 }
