@@ -31,7 +31,7 @@ public class Gmail extends Email {
         // 1. Each mail in the inbox is distinct.
         // 2. The mails are received in non-decreasing order. This means that the date
         // of a new mail is greater than equal to the dates of mails received already.
-        if (size > 0 && size >= inboxCapacity) {
+        if (map.size() >= inboxCapacity) {
             String key = "";
             Mail oldMail;
             for (String s : map.keySet()) {
@@ -72,6 +72,7 @@ public class Gmail extends Email {
             for (String key : map.keySet()) {
                 if (i == map.size() - 1) {
                     message = key;
+                    break;
                 }
                 i++;
             }
