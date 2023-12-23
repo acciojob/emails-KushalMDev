@@ -44,7 +44,7 @@ public class Email {
             else if(Character.isDigit(c)){
                 cnt++;
             }
-            else if(ch=='!' || ch=='@' || ch=='#' || ch=='$' || ch=='%' || ch=='^' || ch=='&' || ch=='*')
+            else if(c=='!' || c=='@' || c=='#' || c=='$' || c=='%' || c=='^' || c=='&' || c=='*')
             {
                 cnt++;
             }
